@@ -5,8 +5,9 @@ import * as actions from '../actions';
 
 import './App.css';
 import Header from './Header';
+import InvestmentForm from './investments/InvestmentForm';
 
-const Landing   = () => <h2>Landing</h2>
+const Landing     = () => <h2>Landing</h2>
 const Portfolio   = () => <h2>Portfolio</h2>
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             <div className="content">
               <Route exact path="/" component={Landing} />
               <Route path="/portfolio" component={Portfolio} />
+              <Route path="/investments/new" component={InvestmentForm} />
             </div>
           </div>
         </BrowserRouter>
