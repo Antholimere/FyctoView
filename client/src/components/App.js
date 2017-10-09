@@ -7,6 +7,7 @@ import './App.css';
 import Header from './Header';
 
 const Landing   = () => <h2>Landing</h2>
+const Portfolio   = () => <h2>Portfolio</h2>
 
 class App extends Component {
   componentDidMount() {
@@ -19,7 +20,10 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={Landing} />
+            <div className="content">
+              <Route exact path="/" component={Landing} />
+              <Route path="/portfolio" component={Portfolio} />
+            </div>
           </div>
         </BrowserRouter>
       </div>
