@@ -9,5 +9,6 @@ export const fetchUser = () => async dispatch => {
 
 export const submitInvestment = (values, history) => async dispatch => {
   const res = await axios.post('/api/investments', values);
-  // dispatch({ type: FETCH_USER, payload: res.data });
+
+  history.push('/portfolio')
 };
