@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import axios from 'axios'
 import TextField from 'material-ui/TextField';
 import DatePicker from './DatePicker';
 import * as actions from '../../actions';
@@ -9,14 +12,13 @@ class InvestmentForm extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.props.handleSubmit(values => { console.log(values) })}>
+        <form onSubmit={this.props.handleSubmit((values) => { this.props.submitInvestment(values, this.props.history) })}>
           <div>
             <label>Units</label>
             <div>
               <Field name="units" component="input" />
             </div>
           </div>
-
           <div>
             <label>Currency</label>
             <div>
@@ -28,20 +30,17 @@ class InvestmentForm extends Component {
               </Field>
             </div>
           </div>
-
           <div>
             <label>Date</label>
             <div>
               <Field name="date" component={DatePicker}/>
             </div>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit">submit</button>
         </form>
       </div>
     )
   }
 }
 
-export default reduxForm({
-  form: 'investmentForm'
-})(InvestmentForm)
+export default connect(null, actions)(withRouter(reduxForm({ form: 'investmentForm' })(InvestmentForm)));

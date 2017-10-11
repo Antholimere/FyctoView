@@ -7,8 +7,7 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitInvestment = (values) => async dispatch => {
+export const submitInvestment = (values, history) => async dispatch => {
   const res = await axios.post('/api/investments', values);
-
-  dispatch({ type: FETCH_USER, payload: res.data });
+  // dispatch({ type: FETCH_USER, payload: res.data });
 };

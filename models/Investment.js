@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 const investmentSchema = new Schema({
   currency: String,
-  date: Date,
-  units: Number,
+  date: String,
+  units: String,
   _user: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 

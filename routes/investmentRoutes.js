@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Investment = mongoose.model('investment');
 
 module.exports = app => {
   app.post('/api/investments', async (req, res) => {
@@ -11,11 +12,7 @@ module.exports = app => {
       _user: req.user.id
     });
 
-    try {
-      await investment.save();
-      res.status(200);
-    } catch (err) {
-      res.status(422).send(err);
-    }
+    await investment.save();
+    res.sendStatus(200);
   });
 }
