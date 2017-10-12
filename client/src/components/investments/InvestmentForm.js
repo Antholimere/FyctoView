@@ -24,9 +24,9 @@ class InvestmentForm extends Component {
             <div>
               <Field name="currency" component="select">
                 <option />
-                <option value="ff0000">Red</option>
-                <option value="00ff00">Green</option>
-                <option value="0000ff">Blue</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="litecoin">Litecoin</option>
               </Field>
             </div>
           </div>

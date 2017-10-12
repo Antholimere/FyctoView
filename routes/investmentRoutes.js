@@ -16,9 +16,11 @@ module.exports = app => {
       currency,
       units,
       date,
+      dollarValue: units * 12.30,
       _user: req.user.id
     });
 
+    console.log(investment)
     await investment.save();
     res.sendStatus(200);
   });

@@ -5,3 +5,20 @@ body {
 .content {
   padding-top: 64px;
 }
+
+#wrapper {
+width:100%;
+margin : 0;
+}
+
+#first-div {
+width:33%;
+margin : 0;
+float : left ;
+}
+
+#second-div {
+width:33%;
+margin : 0;
+float : left ;
+}
