@@ -12,35 +12,61 @@ class InvestmentList extends Component {
     this.props.fetchInvestments();
   }
 
-    getSymbol(currency) {
-      console.log(currency)
-      if (this.props.crypto !== null ){
-        console.log(this.props.crypto.filter(e => { e.id === currency }))
+  getSymbol(currency) {
+    return this.props.crypto.map((c) => {
+      if (c.id === currency) {
+        return(
+          c.symbol
+        )
       }
-    }
+    })
+  }
+
+  getCurrentPrice(currency) {
+    const price = this.props.crypto.filter((c) => {
+      if (c.id === currency) {
+        return(
+          c
+        )
+      }
+    })
+    return price[0].price_usd
+  }
+
+  calculateProfitDollars(units, currentPrice) {
+    return ((parseInt(units, 10) * parseInt(currentPrice, 10))- parseInt(currentPrice, 10))
+  }
+
+  calculateProfitPercentage(units, dollarValue, currentPrice) {
+    const currentDollars = (parseInt(units, 10) * parseInt(currentPrice, 10))
+    const pastWorth = units * dollarValue
+    return parseInt((currentDollars / pastWorth) * 100, 10)
+  }
 
   renderInvestments() {
-
-    return this.props.investments.reverse().map(investment => {
+    return this.props.investments.map(investment => {
       return (
         <Grid item xs={4} key={investment._id}>
           <Card>
             <CardContent>
-            <div id="wrapper">
-              <Typography type="headline" component="h2" id="first-div">
-                <div>{this.getSymbol(investment.currency)}</div>
-                <div>${investment.dollarValue}</div>
-              </Typography>
-              <Typography type="subheading" align="right" id="third-div">
-                <div>BTC {investment.units * 12}$</div>
-                <div>BTC {investment.units * 12}$</div>
-                <div>BTC {investment.units * 12}$</div>
-              </Typography>
-            </div>
-              <Typography type="body1">
-                <small>{investment.units} {investment.currency}s</small>
-              </Typography>
-              <Typography type="body1">
+              <div id="wrapper">
+                <Typography type="headline" component="h2" id="first-div">
+                  <div style={{ marginBottom: -10 }}>{this.getSymbol(investment.currency)}<small>(x{investment.units})</small></div>
+                </Typography>
+                <Typography type="subheading" align="right" id="third-div">
+                  <div>
+                    total value: +{this.calculateProfitPercentage(investment.units, investment.dollarValue, this.getCurrentPrice(investment.currency))}%
+                    |
+                    {" +" + this.calculateProfitDollars(investment.units, this.getCurrentPrice(investment.currency))}$
+                  </div>
+                </Typography>
+              </div>
+              <div>
+                <Typography type="subheading" align="left" id="third-div">
+                  <div style={{ paddingTop: 10 }}>{investment.dollarValue}$</div>
+                </Typography>
+              </div>
+              <Typography style={{ paddingTop: 24, marginBottom: -18 }} type="body1">
                 {new Date(investment.date).toLocaleDateString()}
               </Typography>
             </CardContent>
@@ -54,7 +80,7 @@ class InvestmentList extends Component {
     return (
       <div>
         <Grid container>
-          {this.renderInvestments()}
+          {this.props.crypto && this.renderInvestments()}
         </Grid>
       </div>
     )
