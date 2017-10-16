@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Menu, { MenuItem } from 'material-ui/Menu';
 
 const styles = {
   root: {
@@ -20,6 +21,10 @@ const styles = {
   addButton: {
     color: 'white',
     textDecoration: 'none'
+  },
+  dropDownButton: {
+    color: '#212121',
+    textDecoration: 'none'
   }
 };
 
@@ -32,12 +37,22 @@ class Header extends Component {
       case false:
         return <Button href="/auth/google" color="contrast">Login with Google</Button>;
       default:
-        return [
-          <Link key="1" to="/investments/new" style={styles.addButton}><Button color="contrast"><i className="material-icons">add</i></Button></Link>,
-          <Button key="2" href="/api/logout" color="contrast">Logout</Button>
-        ];
+        return <Link key="1" to="/investments/new" style={styles.addButton}><Button dense color="contrast"><i className="material-icons">add</i></Button></Link>
     }
   }
+
+  state = {
+    anchorEl: null,
+    open: false,
+  };
+
+  handleClick = event => {
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
+
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render(){
     return (
@@ -48,6 +63,28 @@ class Header extends Component {
               FV
             </Typography>
             {this.renderContent()}
+            {this.props.auth &&
+              <div>
+                <Button
+                  color="contrast"
+                  aria-owns={this.state.open ? 'simple-menu' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleClick}
+                >
+                  Account
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={this.state.anchorEl}
+                  open={this.state.open}
+                  onRequestClose={this.handleRequestClose}
+                >
+                  <MenuItem>TBA</MenuItem>
+                  <MenuItem>TBA</MenuItem>
+                  <MenuItem><a href="/api/logout" style={styles.dropDownButton}>Logout</a></MenuItem>
+                </Menu>
+              </div>
+            }
           </Toolbar>
         </AppBar>
       </div>
