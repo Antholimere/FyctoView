@@ -4,7 +4,7 @@ import InvestmentList from './investments/InvestmentList';
 const Portfolio = () => {
   return(
     <div>
-      <h2>Portfolio</h2>
+      <h4>Portfolio</h4>
       <InvestmentList />
     </div>
   )

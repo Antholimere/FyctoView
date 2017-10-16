@@ -53,28 +53,32 @@ class InvestmentList extends Component {
   renderInvestments() {
     return this.props.investments.map(investment => {
       return (
-        <Grid item xs={4} key={investment._id}>
+        <Grid item xs={3} key={investment._id}>
           <Card>
             <CardContent>
               <div id="wrapper">
                 <Typography type="headline" component="h2" id="first-div">
-                  <div style={{ marginBottom: -10 }}>{this.getSymbol(investment.currency)}<small>(x{investment.units})</small></div>
+                  <div style={{ marginBottom: -10 }}>{this.getSymbol(investment.currency)}</div>
                 </Typography>
-                <Typography type="subheading" align="right" id="third-div">
-                  <div>
-                    profits: +{this.calculateProfitPercentage(investment.units, investment.dollarValue, this.getCurrentPrice(investment.currency))}%
-                    |
+                <Typography type="subheading" align="right" id="third-div" style={{color: '#26A69A'}}>
+                    <i class="material-icons">trending_up</i>
+                    +{this.calculateProfitPercentage(investment.units, investment.dollarValue, this.getCurrentPrice(investment.currency))}%
+
                     {" +" + this.calculateProfitDollars(investment.units, this.getCurrentPrice(investment.currency), investment.dollarValue)}$
-                  </div>
                 </Typography>
               </div>
               <div>
-                <Typography type="subheading" align="center" id="third-div">
-                  <div style={{ paddingTop: 10 }}>{this.kFormatter(investment.dollarValue * investment.units)}$  =>
-                  {this.kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
+                <Typography type="body1">
+                  {investment.units} {investment.currency}(s)
+                </Typography>
+                <Typography style={{ marginBottom: -10 }} type="body1">
+                  {this.kFormatter(investment.dollarValue * investment.units)}$
+                </Typography>
+                <Typography type="headline" align="right">
+                  <div style={{ paddingTop: 10 }}><i class="material-icons">account_balance</i>{this.kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
                 </Typography>
               </div>
-              <Typography style={{ paddingTop: 24, marginBottom: -18 }} type="body1">
+              <Typography style={{ marginBottom: -18 }} type="body1">
                 {new Date(investment.date).toLocaleDateString()}
               </Typography>
             </CardContent>

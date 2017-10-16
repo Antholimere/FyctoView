@@ -29,17 +29,6 @@ const styles = {
 };
 
 class Header extends Component {
-  renderContent() {
-    console.log(this.props.auth)
-    switch (this.props.auth) {
-      case null:
-        return;
-      case false:
-        return <Button href="/auth/google" color="contrast">Login with Google</Button>;
-      default:
-        return <Link key="1" to="/investments/new" style={styles.addButton}><Button dense color="contrast"><i className="material-icons">add</i></Button></Link>
-    }
-  }
 
   state = {
     anchorEl: null,
@@ -53,6 +42,18 @@ class Header extends Component {
   handleRequestClose = () => {
     this.setState({ open: false });
   };
+
+  renderContent() {
+    console.log(this.props.auth)
+    switch (this.props.auth) {
+      case null:
+        return;
+      case false:
+        return <Button href="/auth/google" color="contrast">Login with Google</Button>;
+      default:
+        return <Link key="1" to="/investments/new" style={styles.addButton}><Button dense color="contrast"><i className="material-icons">add</i></Button></Link>
+    }
+  }
 
   render(){
     return (
@@ -79,8 +80,7 @@ class Header extends Component {
                   open={this.state.open}
                   onRequestClose={this.handleRequestClose}
                 >
-                  <MenuItem>TBA</MenuItem>
-                  <MenuItem>TBA</MenuItem>
+                  <MenuItem><Link to="/portfolio" style={styles.dropDownButton}>Portfolio</Link></MenuItem>
                   <MenuItem><a href="/api/logout" style={styles.dropDownButton}>Logout</a></MenuItem>
                 </Menu>
               </div>

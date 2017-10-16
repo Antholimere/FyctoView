@@ -13,19 +13,14 @@ module.exports = app => {
 
   app.post('/api/investments', async (req, res) => {
     const { currency, units, date } = req.body;
-    // const priceOnDay = await BitcoinHistoryDays.find({ day: date }, (err, resad) => {
-    //   console.log(err)
-    // })
-
-    // console.log(date, priceOnDay)
     const findSymbol = (currency) => {
       switch (currency) {
         case 'bitcoin':
-          return 'btc';
+          return 'btc'
         case 'ethereum':
-          return 'eth';
+          return 'eth'
         case 'litecoin':
-          return 'ltc';
+          return 'ltc'
         }
     }
 
