@@ -33,15 +33,21 @@ class InvestmentList extends Component {
     return price[0].price_usd
   }
 
+  kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+  }
+
   calculateProfitDollars(units, currentPrice, pastPrice) {
-    const purchasePrice = units * pastPrice
-    return ((parseInt(units, 10) * parseInt(currentPrice, 10))- parseInt(currentPrice, 10))
+    const purchasePrice = units * parseInt(pastPrice, 10)
+    const priceNow = units * parseInt(currentPrice, 10)
+    const result = priceNow - purchasePrice
+    return this.kFormatter(result)
   }
 
   calculateProfitPercentage(units, dollarValue, currentPrice) {
     const currentDollars = (parseInt(units, 10) * parseInt(currentPrice, 10))
     const pastWorth = units * dollarValue
-    return parseInt((currentDollars / pastWorth) * 100, 10)
+    return parseInt((currentDollars / pastWorth) * 100, 10) - 100
   }
 
   renderInvestments() {
@@ -64,8 +70,8 @@ class InvestmentList extends Component {
               </div>
               <div>
                 <Typography type="subheading" align="center" id="third-div">
-                  <div style={{ paddingTop: 10 }}>{investment.dollarValue * investment.units}$  =>
-                  {this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units}$</div>
+                  <div style={{ paddingTop: 10 }}>{this.kFormatter(investment.dollarValue * investment.units)}$  =>
+                  {this.kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
                 </Typography>
               </div>
               <Typography style={{ paddingTop: 24, marginBottom: -18 }} type="body1">
