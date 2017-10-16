@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const investmentSchema = new Schema({
   currency: String,
+  symbol: String,
   dollarValue: String,
   date: Date,
   units: String,

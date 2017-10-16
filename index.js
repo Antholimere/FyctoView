@@ -5,11 +5,15 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
+mongoose.connect(keys.mongoURI)
+
 require('./models/User');
 require('./models/Investment');
+// require('./models/Crypto');
+// require('./models/CryptoHistoryDay');
 require('./services/passport');
-
-mongoose.connect(keys.mongoURI)
+// require('./services/cryptoDbPopulating');
+// require('./services/cryptoHistoryData');
 
 const app = express();
 

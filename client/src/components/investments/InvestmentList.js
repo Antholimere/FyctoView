@@ -33,7 +33,8 @@ class InvestmentList extends Component {
     return price[0].price_usd
   }
 
-  calculateProfitDollars(units, currentPrice) {
+  calculateProfitDollars(units, currentPrice, pastPrice) {
+    const purchasePrice = units * pastPrice
     return ((parseInt(units, 10) * parseInt(currentPrice, 10))- parseInt(currentPrice, 10))
   }
 
@@ -55,15 +56,16 @@ class InvestmentList extends Component {
                 </Typography>
                 <Typography type="subheading" align="right" id="third-div">
                   <div>
-                    total value: +{this.calculateProfitPercentage(investment.units, investment.dollarValue, this.getCurrentPrice(investment.currency))}%
+                    profits: +{this.calculateProfitPercentage(investment.units, investment.dollarValue, this.getCurrentPrice(investment.currency))}%
                     |
-                    {" +" + this.calculateProfitDollars(investment.units, this.getCurrentPrice(investment.currency))}$
+                    {" +" + this.calculateProfitDollars(investment.units, this.getCurrentPrice(investment.currency), investment.dollarValue)}$
                   </div>
                 </Typography>
               </div>
               <div>
-                <Typography type="subheading" align="left" id="third-div">
-                  <div style={{ paddingTop: 10 }}>{investment.dollarValue}$</div>
+                <Typography type="subheading" align="center" id="third-div">
+                  <div style={{ paddingTop: 10 }}>{investment.dollarValue * investment.units}$  =>
+                  {this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units}$</div>
                 </Typography>
               </div>
               <Typography style={{ paddingTop: 24, marginBottom: -18 }} type="body1">

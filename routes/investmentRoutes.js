@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Investment = mongoose.model('investment');
+const request = require('request')
+const csv = require('csvtojson')
 
 module.exports = app => {
 
@@ -11,17 +13,45 @@ module.exports = app => {
 
   app.post('/api/investments', async (req, res) => {
     const { currency, units, date } = req.body;
+    // const priceOnDay = await BitcoinHistoryDays.find({ day: date }, (err, resad) => {
+    //   console.log(err)
+    // })
 
-    const investment = new Investment({
-      currency,
-      units,
-      date,
-      dollarValue: units * 12.30,
-      _user: req.user.id
-    });
+    // console.log(date, priceOnDay)
+    const findSymbol = (currency) => {
+      switch (currency) {
+        case 'bitcoin':
+          return 'btc';
+        case 'ethereum':
+          return 'eth';
+        case 'litecoin':
+          return 'ltc';
+        }
+    }
 
-    console.log(investment)
-    await investment.save();
-    res.sendStatus(200);
+    const createInvestment = (date, symbol) => {
+      csv()
+        .fromStream(request.get(`https://coinmetrics.io/data/${symbol}.csv`))
+        .on('csv', (csvRow)=>{
+          if (csvRow[0] === date.replace(/-/g, "/")) {
+            console.log(csvRow[4])
+            const investment = new Investment({
+              currency,
+              units,
+              date,
+              symbol: symbol,
+              dollarValue: parseInt(csvRow[4], 10),
+              _user: req.user.id
+            }).save();
+
+            res.sendStatus(200);
+
+          }
+        })
+        .on('done',(error)=>{})
+    }
+
+    createInvestment(date, findSymbol(currency))
+
   });
 }
