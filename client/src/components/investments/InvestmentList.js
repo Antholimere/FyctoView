@@ -6,6 +6,9 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import '../App.css';
+import jsPDF from 'jspdf'
+import AddIcon from 'material-ui-icons/Add';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
 class InvestmentList extends Component {
   componentDidMount() {
@@ -53,7 +56,7 @@ class InvestmentList extends Component {
   renderInvestments() {
     return this.props.investments.map(investment => {
       return (
-        <Grid item xs={3} key={investment._id}>
+        <Grid item xl={3} md={4} lg={3} xs={12} key={investment._id}>
           <Card>
             <CardContent>
               <div id="wrapper">
@@ -88,11 +91,23 @@ class InvestmentList extends Component {
     })
   }
 
+  savePDF() {
+    var doc = new jsPDF()
+
+    doc.text('Hello world!', 10, 10)
+    doc.save('a4.pdf')
+  }
+
   render() {
     return (
       <div>
         <Grid container>
           {this.props.crypto && this.renderInvestments()}
+          <div className="btn_download">
+            <Button onClick={() => { this.savePDF() }} fab aria-label="edit">
+              <i class="material-icons">file_download</i>
+            </Button>
+          </div>
         </Grid>
       </div>
     )
