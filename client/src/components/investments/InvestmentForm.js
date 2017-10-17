@@ -58,4 +58,4 @@ function validate(values) {
   return errors;
 }
 
-export default connect(null, actions)(withRouter(reduxForm({ form: 'investmentForm' })(InvestmentForm)));
+export default connect(null, actions)(withRouter(reduxForm({ validate, form: 'investmentForm' })(InvestmentForm)));

@@ -65,6 +65,7 @@ class renderCurrencyField extends React.Component {
             </MenuItem>
           ))}
         </TextField>
+        <div>{touched && error && <span>{error}</span>}</div>
       </div>
     )
   }

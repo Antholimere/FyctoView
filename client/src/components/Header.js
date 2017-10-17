@@ -61,7 +61,7 @@ class Header extends Component {
         <AppBar style={styles.appBar}>
           <Toolbar>
             <Typography type="title" color="inherit" style={styles.flex}>
-              FV
+              <Link style={{textDecoration: 'none', color: 'white'}} to={this.props.auth ? '/portfolio' : '/'}>FV</Link>
             </Typography>
             {this.renderContent()}
             {this.props.auth &&

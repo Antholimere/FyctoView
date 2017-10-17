@@ -37,7 +37,7 @@ class renderUnitsField extends React.Component {
           onChange={this.handleChange('units')}
           margin="normal"
         />
-        {touched && error && <span>{error}</span>}
+        <div>{touched && error && <span>{error}</span>}</div>
       </div>
     )
   }
