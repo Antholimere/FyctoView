@@ -61,7 +61,7 @@ class InvestmentList extends Component {
                   <div style={{ marginBottom: -10 }}>{this.getSymbol(investment.currency)}</div>
                 </Typography>
                 <Typography type="subheading" align="right" id="third-div" style={{color: '#26A69A'}}>
-                    <i class="material-icons">trending_up</i>
+                    <i className="material-icons">trending_up</i>
                     +{this.calculateProfitPercentage(investment.units, investment.dollarValue, this.getCurrentPrice(investment.currency))}%
 
                     {" +" + this.calculateProfitDollars(investment.units, this.getCurrentPrice(investment.currency), investment.dollarValue)}$
@@ -75,7 +75,7 @@ class InvestmentList extends Component {
                   {this.kFormatter(investment.dollarValue * investment.units)}$
                 </Typography>
                 <Typography type="headline" align="right">
-                  <div style={{ paddingTop: 10 }}><i class="material-icons">account_balance</i>{this.kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
+                  <div style={{ paddingTop: 10 }}><i className="material-icons">account_balance</i>{this.kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
                 </Typography>
               </div>
               <Typography style={{ marginBottom: -18 }} type="body1">
