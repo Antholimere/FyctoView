@@ -63,13 +63,13 @@ class InvestmentStatsBar extends Component {
   renderContent() {
     return(
       <Typography type="subheading" align="center" gutterBottom>
-        <span> Invested {this.kFormatter(this.calculateTotalInvestedDollars(this.props.investments))}$ </span>
+        <span> <i className="material-icons">account_balance_wallet</i> {this.kFormatter(this.calculateTotalInvestedDollars(this.props.investments))}$ </span>
         |
-        <span> Turnover +{this.calculateTotalProfitPercent(this.props.investments)}% </span>
+        <span style={{color: '#26A69A'}}> <i style={{ color: 'black' }} className="material-icons">swap_vert</i> +{this.calculateTotalProfitPercent(this.props.investments)}% </span>
         |
-        <span> Total balance {this.kFormatter(this.calculateTotalBalance(this.props.investments))}$ </span>
+        <span style={{color: '#26A69A'}}> <i style={{ color: 'black' }} className="material-icons">account_balance</i> +{this.kFormatter(this.calculateTotalBalance(this.props.investments))}$ </span>
         |
-        <span> in {this.calculateTotalInvestedTime(this.props.investments)}</span>
+        <span> <i className="material-icons">alarm</i> {this.calculateTotalInvestedTime(this.props.investments)}</span>
       </Typography>
     )
   }

@@ -9,7 +9,7 @@ const Portfolio = () => {
     <br/>
       <InvestmentStatsBar />
       <InvestmentForm />
-      <h4>Portfolio</h4>
+      <br/>
       <InvestmentList />
     </div>
   )
