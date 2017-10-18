@@ -2,19 +2,25 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 
 function DatePickers(props) {
-  const { input } = props;
+  const {
+      input, placeholder,
+      meta: {touched, error}
+    } = props
 
   return (
-    <TextField
-      id="date"
-      label="Birthday"
-      type="date"
-      style={{ width: 200 }}
-      InputLabelProps={{
-        shrink: true,
-      }}
-      {...input}
-    />
+    <div>
+      <TextField
+        id="date"
+        label="Date"
+        type="date"
+        style={{ width: 200, marginTop: 16 }}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        {...input}
+      />
+      <div style={{color: 'red'}}>{touched && error && <span>{error}</span>}</div>
+    </div>
   );
 }
 

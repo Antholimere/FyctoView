@@ -44,14 +44,13 @@ class Header extends Component {
   };
 
   renderContent() {
-    console.log(this.props.auth)
     switch (this.props.auth) {
       case null:
         return;
       case false:
         return <Button href="/auth/google" color="contrast">Login with Google</Button>;
       default:
-        return <Link key="1" to="/investments/new" style={styles.addButton}><Button dense color="contrast"><i className="material-icons">add</i></Button></Link>
+        return;
     }
   }
 
@@ -92,8 +91,8 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({auth}) {
-  return { auth }
+function mapStateToProps({auth, investments}) {
+  return { auth, investments }
 }
 
 export default connect(mapStateToProps)(Header);

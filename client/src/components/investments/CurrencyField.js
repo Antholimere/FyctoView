@@ -47,7 +47,7 @@ class renderCurrencyField extends React.Component {
           id="select-currency"
           select
           label="Currency"
-          styles={{width: 200}}
+          style={{width: 200}}
           value={this.state.currency}
           onChange={this.handleChange('currency')}
           SelectProps={{
@@ -55,7 +55,6 @@ class renderCurrencyField extends React.Component {
               className: {width: 200},
             },
           }}
-          helperText="Please select your currency"
           margin="normal"
           {...input}
         >
@@ -65,7 +64,7 @@ class renderCurrencyField extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-        <div>{touched && error && <span>{error}</span>}</div>
+        <div style={{color: 'red'}}>{touched && error && <span>{error}</span>}</div>
       </div>
     )
   }

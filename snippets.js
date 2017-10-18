@@ -80,3 +80,34 @@ class InvestmentForm extends Component {
 }
 
 export default connect(null, actions)(withRouter(reduxForm({ form: 'investmentForm' })(InvestmentForm)));
+
+
+  render() {
+    return(
+      <div>
+        <Button onClick={this.handleClickOpen}>Open form dialog</Button>
+        <Grid container>
+          <Grid item xs={5} />
+          <Grid item xs={4}>
+            <form onSubmit={this.props.handleSubmit((values) => { this.props.submitInvestment(values, this.props.history) })}>
+              <div>
+                <Field name="units" component={UnitsField} />
+              </div>
+              <div>
+                <div>
+                  <Field name="currency" component={CurrencyField} />
+                </div>
+              </div>
+              <div>
+              <div>
+                <Field name="date" component={DatePicker_2}/>
+              </div>
+              </div>
+              <br/>
+              <button>create</button>
+            </form>
+          </Grid>
+        </Grid>
+      </div>
+    )
+  }

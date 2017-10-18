@@ -105,6 +105,7 @@ class InvestmentList extends Component {
     return (
       <div>
         <Grid container>
+          {!this.props.investments[0] && console.log('no investment so far')}
           {this.props.crypto && this.renderInvestments()}
           <div className="btn_download">
             <Button style={{backgroundColor: 'white'}} onClick={() => { this.savePDF() }} fab aria-label="edit">

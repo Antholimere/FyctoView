@@ -30,6 +30,7 @@ class renderUnitsField extends React.Component {
           id="number"
           label="Units"
           type="number"
+          style={{ width: 200 }}
           InputLabelProps={{
             shrink: true,
           }}
@@ -37,7 +38,7 @@ class renderUnitsField extends React.Component {
           onChange={this.handleChange('units')}
           margin="normal"
         />
-        <div>{touched && error && <span>{error}</span>}</div>
+        <div style={{color: 'red'}}>{touched && error && <span>{error}</span>}</div>
       </div>
     )
   }

@@ -25,7 +25,7 @@ const Landing = () => {
       <br/>
       <br/>
       <div align="center">
-        <Button href="/auth/google" raised color="primary">
+        <Button href="/auth/google" raised style={{ backgroundColor: '#1980EF', color: 'white' }}>
           Start here
         </Button>
       </div>

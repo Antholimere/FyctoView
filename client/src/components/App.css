@@ -8,9 +8,10 @@ body {
 }
 
 .btn_download {
-  margin-left: auto;
-  margin-right: 20px;
-  margin-top: 28px;
+  left: 85%;
+  position: fixed;
+  z-index: 1999;
+  top: 34px;
 }
 
 #wrapper {
@@ -29,3 +30,23 @@ width:33%;
 margin : 0;
 float : left ;
 }
+
+.addButton {
+  left: 80%;
+  position: fixed;
+  z-index: 1999;
+  top: 34px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
