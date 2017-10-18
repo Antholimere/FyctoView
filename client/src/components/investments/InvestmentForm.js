@@ -12,6 +12,7 @@ import CurrencyField from './CurrencyField';
 import Grid from 'material-ui/Grid';
 import * as actions from '../../actions';
 import Button from 'material-ui/Button';
+import { CircularProgress } from 'material-ui/Progress';
 import '../App.css';
 import Dialog, {
   DialogActions,
@@ -23,7 +24,14 @@ import Dialog, {
 class InvestmentForm extends Component {
 
   state = {
-    open: false
+    open: false,
+    loading: false,
+    success: false,
+    values: null
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer)
   }
 
   handleClickOpen = () => {
@@ -32,10 +40,34 @@ class InvestmentForm extends Component {
 
   handleRequestClose = () => {
     this.setState({ open: false });
-    this.props.fetchInvestments();
   };
 
+  handleButtonClick = (values) => {
+    this.props.submitInvestment(values)
+    if (!this.state.loading) {
+      this.setState(
+        {
+          success: false,
+          loading: true,
+        },
+        () => {
+          this.timer = setTimeout(() => {
+            this.handleRequestClose();
+            this.setState({
+              loading: false,
+              success: true,
+            });
+          }, 1500);
+        },
+      );
+    }
+  };
+
+  timer = undefined;
+
   render() {
+    const { loading, success } = this.state;
+
     return(
       <div>
         <div className="addButton">
@@ -44,9 +76,9 @@ class InvestmentForm extends Component {
           </Button>
         </div>
           <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
-            <DialogTitle>create investment</DialogTitle>
+            <DialogTitle align="center">new investment</DialogTitle>
             <DialogContent>
-              <form onSubmit={this.props.handleSubmit((values) => { this.props.submitInvestment(values) })}>
+              <form onSubmit={this.props.handleSubmit((values) => { this.handleButtonClick(values) })}>
                 <div>
                   <Field name="units" component={UnitsField} />
                 </div>
@@ -61,7 +93,17 @@ class InvestmentForm extends Component {
                 </div>
                 </div>
                 <br/>
-                <button onClick={this.handleRequestClose}>create</button>
+                <Button
+                  type="submit"
+                  raised
+                  className="success"
+                  color="primary"
+                  disabled={loading}
+                  style={{ backgroundColor: '#1980ef', width: 200 }}
+                >
+                create
+                {loading && <CircularProgress size={24} className="buttonProgress" />}
+                </Button>
               </form>
             </DialogContent>
           </Dialog>

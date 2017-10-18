@@ -38,6 +38,17 @@ float : left ;
   top: 34px;
 }
 
+.buttonSuccess {
+  background-color: #4CAF50;
+}
+
+.buttonProgress {
+  color: #4CAF50;
+  position: 'absolute';
+  margin-top: 5px;
+  margin-left: -36px;
+}
+
 
 
 
