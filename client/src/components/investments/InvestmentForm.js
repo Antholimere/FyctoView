@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import axios from 'axios'
 import TextField from 'material-ui/TextField';
 import DatePicker from './DatePicker';
+import DatePicker_2 from './DatePicker_2';
 import UnitsField from './UnitsField';
 import CurrencyField from './CurrencyField';
 import Grid from 'material-ui/Grid';
 import * as actions from '../../actions';
+import Button from 'material-ui/Button';
 
 class InvestmentForm extends Component {
 
@@ -16,7 +18,7 @@ class InvestmentForm extends Component {
     return(
       <div>
         <Grid container>
-          <Grid item xs={4} />
+          <Grid item xs={5} />
           <Grid item xs={4}>
             <form onSubmit={this.props.handleSubmit((values) => { this.props.submitInvestment(values, this.props.history) })}>
               <div>
@@ -28,12 +30,12 @@ class InvestmentForm extends Component {
                 </div>
               </div>
               <div>
-                <label>Date</label>
-                <div>
-                  <Field name="date" component={DatePicker}/>
-                </div>
+              <div>
+                <Field name="date" component={DatePicker_2}/>
               </div>
-              <button type="submit">submit</button>
+              </div>
+              <br/>
+              <button>create</button>
             </form>
           </Grid>
         </Grid>

@@ -7,8 +7,7 @@ import './App.css';
 import Header from './Header';
 import InvestmentForm from './investments/InvestmentForm';
 import Portfolio from './Portfolio';
-
-const Landing     = () => <h2>Landing</h2>
+import Landing from './Landing';
 
 class App extends Component {
   componentDidMount() {
