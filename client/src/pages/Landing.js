@@ -5,8 +5,7 @@ import Button from 'material-ui/Button';
 const Landing = () => {
   return(
     <div>
-      <h2 align="center">Have a good and safe overview on your crypto activity</h2>
-      <div align="center"><img src={require('./images/rsz2_coverphoto.jpg')}/></div>
+      <div align="center"><img src={require('./landing/coverphoto.jpg')} alt="guy infront of computer stretches his arms out" /></div>
       <br/>
       <Grid container>
         <Grid item xs={4}>

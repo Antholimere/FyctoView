@@ -1,7 +1,7 @@
 import React from 'react';
-import InvestmentList from './investments/InvestmentList';
-import InvestmentStatsBar from './investments/InvestmentStatsBar';
-import InvestmentForm from './investments/InvestmentForm';
+import InvestmentList from './portfolio/InvestmentList';
+import InvestmentStatsBar from './portfolio/InvestmentStatsBar';
+import InvestmentForm from './portfolio/InvestmentForm';
 
 const Portfolio = () => {
   return(

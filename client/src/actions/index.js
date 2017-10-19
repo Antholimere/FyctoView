@@ -8,7 +8,7 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const submitInvestment = (values) => async dispatch => {
-  const res = await axios.post('/api/investments', values);
+  await axios.post('/api/investments', values);
 
   dispatch(fetchInvestments())
 };

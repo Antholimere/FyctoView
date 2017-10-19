@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchInvestments } from '../../actions';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
-import '../App.css';
-import jsPDF from 'jspdf'
-import AddIcon from 'material-ui-icons/Add';
-import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import jsPDF from 'jspdf';
 import moment from 'moment';
+
+const kFormatter = require('../../utils/numbers.js').kFormatter
 
 class InvestmentList extends Component {
   componentDidMount() {
@@ -23,6 +22,7 @@ class InvestmentList extends Component {
           c.symbol
         )
       }
+      return undefined
     })
   }
 
@@ -37,15 +37,11 @@ class InvestmentList extends Component {
     return price[0].price_usd
   }
 
-  kFormatter(num) {
-    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
-  }
-
   calculateProfitDollars(units, currentPrice, pastPrice) {
     const purchasePrice = units * parseInt(pastPrice, 10)
     const priceNow = units * parseInt(currentPrice, 10)
     const result = priceNow - purchasePrice
-    return this.kFormatter(result)
+    return kFormatter(result)
   }
 
   calculateProfitPercentage(units, dollarValue, currentPrice) {
@@ -76,10 +72,10 @@ class InvestmentList extends Component {
                   {investment.units} {investment.currency}(s)
                 </Typography>
                 <Typography style={{ marginBottom: -10 }} type="body1">
-                  {this.kFormatter(investment.dollarValue * investment.units)}$
+                  {kFormatter(investment.dollarValue * investment.units)}$
                 </Typography>
                 <Typography type="headline" align="right">
-                  <div style={{ paddingTop: 10 }}><i className="material-icons">account_balance</i>{this.kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
+                  <div style={{ paddingTop: 10 }}><i className="material-icons">account_balance</i>{kFormatter(this.getCurrentPrice((investment.currency), investment.dollarValue) * investment.units)}$</div>
                 </Typography>
               </div>
               <Typography style={{ marginBottom: -18 }} type="body1">

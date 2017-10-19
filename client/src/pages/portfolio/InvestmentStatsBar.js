@@ -3,6 +3,8 @@ import Typography from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import moment from 'moment'
 
+const kFormatter = require('../../utils/numbers.js').kFormatter
+
 class InvestmentStatsBar extends Component {
 
   calculateTotalInvestedDollars (investments) {
@@ -11,10 +13,6 @@ class InvestmentStatsBar extends Component {
       total += (i.units * i.dollarValue)
     })
     return total
-  }
-
-  kFormatter(num) {
-    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
   }
 
   getCurrentPrice(currency) {
@@ -63,11 +61,11 @@ class InvestmentStatsBar extends Component {
   renderContent() {
     return(
       <Typography type="subheading" align="center" gutterBottom>
-        <span> <i className="material-icons">account_balance_wallet</i> {this.kFormatter(this.calculateTotalInvestedDollars(this.props.investments))}$ </span>
+        <span> <i className="material-icons">account_balance_wallet</i> {kFormatter(this.calculateTotalInvestedDollars(this.props.investments))}$ </span>
         |
         <span style={{color: '#26A69A'}}> <i style={{ color: 'black' }} className="material-icons">swap_vert</i> +{this.calculateTotalProfitPercent(this.props.investments)}% </span>
         |
-        <span style={{color: '#26A69A'}}> <i style={{ color: 'black' }} className="material-icons">account_balance</i> +{this.kFormatter(this.calculateTotalBalance(this.props.investments))}$ </span>
+        <span style={{color: '#26A69A'}}> <i style={{ color: 'black' }} className="material-icons">account_balance</i> +{kFormatter(this.calculateTotalBalance(this.props.investments))}$ </span>
         |
         <span> <i className="material-icons">alarm</i> {this.calculateTotalInvestedTime(this.props.investments)}</span>
       </Typography>

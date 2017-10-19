@@ -2,24 +2,10 @@ import React from 'react'
 import TextField from 'material-ui/TextField';
 
 class renderUnitsField extends React.Component {
-  state = {
-    units: ''
-  }
-
-  constructor (props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
 
   render() {
     const {
-      input, placeholder,
+      input,
       meta: {touched, error}
     } = this.props
 
@@ -31,12 +17,6 @@ class renderUnitsField extends React.Component {
           label="Units"
           type="number"
           style={{ width: 200 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={this.state.units}
-          onChange={this.handleChange('units')}
-          margin="normal"
         />
         <div style={{color: 'red'}}>{touched && error && <span>{error}</span>}</div>
       </div>

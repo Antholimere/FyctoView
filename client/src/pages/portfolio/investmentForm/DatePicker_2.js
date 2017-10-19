@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 
 function DatePickers(props) {
   const {
-      input, placeholder,
+      input,
       meta: {touched, error}
     } = props
 

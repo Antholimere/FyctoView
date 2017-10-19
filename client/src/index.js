@@ -4,17 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-import App from './components/App';
+import App from './App';
 import reducers from './reducers';
-
-const logger = store => next => action => {
-    console.group(action.type)
-    console.info('dispatching', action)
-    let result = next(action)
-    console.log('next state', store.getState())
-    console.groupEnd(action.type)
-    return result
-}
+import logger from 'redux-logger';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
