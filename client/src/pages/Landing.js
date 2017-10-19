@@ -9,11 +9,11 @@ const Landing = () => {
       <br/>
       <Grid container>
         <Grid item xs={4}>
-          <h4 align="center"><i class="material-icons">alarm_on</i></h4>
+          <h4 align="center"><i className="material-icons">alarm_on</i></h4>
           <p align="center">real-time data</p>
         </Grid>
         <Grid item xs={4}>
-          <h4 align="center"><i class="material-icons">https</i></h4>
+          <h4 align="center"><i className="material-icons">https</i></h4>
           <p align="center">we keep <b>none</b> of your personal info</p>
         </Grid>
         <Grid item xs={4}>

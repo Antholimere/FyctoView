@@ -91,8 +91,8 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({auth, investments}) {
-  return { auth, investments }
+function mapStateToProps({auth}) {
+  return { auth }
 }
 
 export default connect(mapStateToProps)(Header);
